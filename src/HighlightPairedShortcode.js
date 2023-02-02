@@ -1,34 +1,27 @@
-const Prism = require("prismjs");
-const PrismLoader = require("./PrismLoader");
-const HighlightLinesGroup = require("./HighlightLinesGroup");
-const getAttributes = require("./getAttributes");
+const Chroma = require("chroma-highlight");
+const parseSyntaxArguments = require("./parseSyntaxArguments");
 
-module.exports = function (content, language, highlightNumbers, options = {}) {
-  // default to on
-  if(options.trim === undefined || options.trim === true) {
-    content = content.trim();
+module.exports = function (content, args, options = {}) {
+  // No args, so don't know language, drop out
+  if (!args) {
+    return content;
   }
 
   let highlightedContent;
-  if( language === "text" ) {
-    highlightedContent = content;
-  } else {
-    highlightedContent = Prism.highlight(content, PrismLoader(language), language);
+
+  if (options.trim === undefined || options.trim === true) {
+    content = content.trim();
   }
 
-  let group = new HighlightLinesGroup(highlightNumbers);
-  let lines = highlightedContent.split(/\r?\n/);
-  lines = lines.map(function(line, j) {
-    if(options.alwaysWrapLineHighlights || highlightNumbers) {
-      let lineContent = group.getLineMarkup(j, line);
-      return lineContent;
-    }
-    return line;
-  });
+  if (args === "text") {
+    highlightedContent = content;
+  } else {
+    const parsedArgs = parseSyntaxArguments(args, options);
 
-  const context = { content: content, language: language,  options: options };
-  const preAttributes = getAttributes(options.preAttributes, context);
-  const codeAttributes = getAttributes(options.codeAttributes, context);
+    let opts = `--formatter html --html-only --html-inline-styles ${parsedArgs} `;
 
-  return `<pre${preAttributes}><code${codeAttributes}>` + lines.join(options.lineSeparator || "<br>") + "</code></pre>";
+    highlightedContent = Chroma.highlight(content, opts);
+  }
+
+  return highlightedContent;
 };
