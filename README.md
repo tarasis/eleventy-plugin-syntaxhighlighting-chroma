@@ -2,6 +2,8 @@
 
 # eleventy-plugin-syntaxhighlighting-chroma
 
+**WIP WIP WIP WIP WIP WIP**
+
 A module for handling syntax highlighting in [Eleventy](https://github.com/11ty/eleventy) using [Chroma](https://github.com/alecthomas/chroma); a syntax highlighter written in Go. There is no browser/client JavaScript required, the highlight transformations are all done at build-time.
 
 I am making using of the [chroma-highlight](https://github.com/krymel/chroma-highlight) NPM package to include `Chroma` support. (It handles downloading the required binary for the platform you are working on).
