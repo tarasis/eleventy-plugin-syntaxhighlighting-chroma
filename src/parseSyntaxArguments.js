@@ -39,14 +39,17 @@ function attributeEntryToString2(attribute, context) {
  * @returns {string} A string containing the above HTML attributes preceded by a single space.
  */
 function parseSyntaxArguments(args, context = {}) {
-  console.log(">>pSA");
-  console.log(args);
-  console.log(">>>>>> context");
-  console.log(context);
+  // console.log(">>pSA");
+  // console.log(args);
+  // console.log(">>>>>> context");
+  // console.log(context);
   const preAttributes = getAttributes(context.preAttributes);
   const codeAttributes = getAttributes(context.codeAttributes);
 
-  console.log("<<pSA");
+  const lineNumbersRegex =
+    /[0-9]{1,},[0-9]{1,}[:-][0-9]{1,}|[0-9]{1,},[0-9]{1,}|[0-9]{1,}/;
+
+  // console.log("<<pSA");
 
   let splitArgs;
 
@@ -62,6 +65,28 @@ function parseSyntaxArguments(args, context = {}) {
 
   opts += `--lexer ${splitArgs[0]} `;
 
+  // Remove the language which should be the first arg
+  splitArgs.shift();
+
+  if (Array.isArray(splitArgs)) {
+    splitArgs.forEach((arg) => {
+      if (arg.includes("lineNumbersStart")) {
+        opts = opts + `--html-base-line=${arg.split("=")[1]} `;
+      } else if (lineNumbersRegex.test(arg)) {
+        // console.log("Match Regex " + arg);
+        if (arg.includes("-")) {
+          arg = arg.replace("-", ":");
+          // console.log("Replacing - with : " + arg);
+        }
+        opts = opts + `--html-highlight=${arg} `;
+      }
+
+      // console.log(arg);
+    });
+    // for (arg in splitArgs) {
+    //   console.log(arg);
+    // }
+  }
   if (context["theme"]) {
     opts = opts + `--style ${context["theme"]} `;
   } else {
@@ -75,35 +100,6 @@ function parseSyntaxArguments(args, context = {}) {
   if (context["lineNumbersStyle"] == "table" || args.includes("table")) {
     opts = opts + "--html-lines-table ";
   }
-
-  if (splitArgs.includes("lineNumbersStart")) {
-    console.log("lineNumbersStart");
-    // console.log(splitArgs["lineNumbersStart"]);
-    // // console.log(args.keys());
-    // console.log(splitArgs.getAttribute("lineNumbersStart"));
-    // opts =
-    //   opts + `--html-base-line= ${split["lineNumbersStart"].split("="[1])}`;
-  }
-
-  // let langClass = context.language ? `language-${context.language}` : "";
-  // if (!attributes) {
-  //   return langClass ? ` class="${langClass}"` : "";
-  // } else if (typeof attributes === "object") {
-  //   if(!("class" in attributes) && langClass) {
-  //     // class attribute should be first in order
-  //     let tempAttrs = { class: langClass };
-  //     for(let key in attributes) {
-  //       tempAttrs[key] = attributes[key];
-  //     }
-  //     attributes = tempAttrs;
-  //   }
-  //   const formattedAttributes = Object.entries(attributes).map(
-  //     entry => attributeEntryToString(entry, context)
-  //   );
-  //   return formattedAttributes.length ? ` ${formattedAttributes.join(" ")}` : "";
-  // } else if (typeof attributes === "string") {
-  //   throw new Error("Syntax highlighter plugin custom attributes on <pre> and <code> must be an object. Received: " + JSON.stringify(attributes));
-  // }
 
   return opts;
 }

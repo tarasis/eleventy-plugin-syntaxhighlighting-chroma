@@ -21,7 +21,7 @@ Arguments:
 - `lineNumbers` will add line numbers starting from 1 for each code block.
 - `lineNumbersStyle` if `table` is used, then code block will use a table to make it easier to drag and select the code. i.e `lineNumberStyle=table`
 - `lineNumbersStart` the number to start the line number count from. i.e `lineNumbersStart=200`
-
+- number **or** number, number **or** number,rangeStartNumber-rangeEndNumber **or** number,rangeStartNumber-rangeEndNumber to specify a line or lines to highlight. i.e `1`, or `1,3`, or `3:6`, or `1,3:6`, or `2,4-6`. **NOTE** if you specify `lineNumbersStart` then the specified numbers must be relative to that (so `lineNumbersStart=200`, then use `204` to highlight line 204)
 
 ## Supported `options` in eleventy config
 

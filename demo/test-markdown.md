@@ -93,6 +93,20 @@ let multilineString = `
 `;
 ```
 
+```js/4
+let multilineString = `
+  this is the first line
+  this is the second line
+  this is the third line
+  this is the fourth line
+  this is the fifth line
+  this is the sixth line
+  this is the seventh line
+  this is the eighth line
+`;
+```
+
+
 Line numbers and highlight
 Highlight 1, 3-6
 
@@ -109,10 +123,44 @@ let multilineString = `
 `;
 ```
 
-Line numbers, highlight, base number 200, table
-Highlight 1, 3-6
+Line numbers and highlight
+Highlight 3-6
 
-```js/1,3:6/lineNumbers/table/lineNumbersStart=200
+```js/3:6/lineNumbers
+let multilineString = `
+  this is the first line
+  this is the second line
+  this is the third line
+  this is the fourth line
+  this is the fifth line
+  this is the sixth line
+  this is the seventh line
+  this is the eighth line
+`;
+```
+
+
+Line numbers, highlight, base number 200, table
+Highlight 202-204
+
+```js/202:204/lineNumbers/table/lineNumbersStart=200
+let multilineString = `
+  this is the first line
+  this is the second line
+  this is the third line
+  this is the fourth line
+  this is the fifth line
+  this is the sixth line
+  this is the seventh line
+  this is the eighth line
+`;
+```
+
+
+Line numbers, highlight, base number 200, table
+Highlight 3-6 (won't work)
+
+```js/3:6/lineNumbers/table/lineNumbersStart=200
 let multilineString = `
   this is the first line
   this is the second line
