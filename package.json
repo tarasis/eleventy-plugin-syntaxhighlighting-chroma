@@ -1,7 +1,7 @@
 {
-  "name": "@11ty/eleventy-plugin-syntaxhighlight",
-  "version": "4.2.0",
-  "description": "Prism.js based syntax highlighting for Markdown, Liquid, Nunjucks, and 11ty.js templates.",
+  "name": "eleventy-plugin-syntaxhighlight-chroma",
+  "version": "0.0.1",
+  "description": "Chroma based syntax highlighting for Markdown, Liquid, Nunjucks templates.",
   "publishConfig": {
     "access": "public"
   },
@@ -15,26 +15,22 @@
     "type": "git",
     "url": "git+https://github.com/11ty/eleventy-plugin-syntaxhighlight.git"
   },
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/11ty"
-  },
   "keywords": [
     "eleventy",
     "eleventy-plugin"
   ],
   "author": {
-    "name": "Zach Leatherman",
-    "email": "zachleatherman@gmail.com",
-    "url": "https://zachleat.com/"
+    "name": "Robert McGovern",
+    "email": "rob@tarasis.net",
+    "url": "https://tarasis.net/"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/11ty/eleventy-plugin-syntaxhighlight/issues"
+    "url": "https://github.com/tarasis/eleventy-plugin-syntaxhighlighting-chroma/issues"
   },
-  "homepage": "https://www.11ty.dev/docs/plugins/syntaxhighlight/",
+  "homepage": "https://github.com/tarasis/eleventy-plugin-syntaxhighlighting-chroma/",
   "11ty": {
-    "compatibility": ">=0.5.4"
+    "compatibility": ">=1.0.0"
   },
   "devDependencies": {
     "@11ty/eleventy": "^1.0.2",
@@ -44,8 +40,7 @@
   },
   "dependencies": {
     "chroma-highlight": "^2.4.2",
-    "linkedom": "^0.14.19",
-    "prismjs": "^1.29.0"
+    "linkedom": "^0.14.19"
   },
   "ava": {
     "environmentVariables": {},
