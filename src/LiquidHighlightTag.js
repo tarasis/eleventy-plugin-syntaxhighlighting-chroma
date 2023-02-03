@@ -38,7 +38,7 @@ class LiquidHighlightTag {
             return token.raw || token.getText();
           });
           let tokenStr = tokens.join("").trim();
-          console.log(this.args);
+
           return Promise.resolve(
             HighlightPairedShortcode(tokenStr, this.args, options)
           );
