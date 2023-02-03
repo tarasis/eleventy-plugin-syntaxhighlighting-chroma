@@ -55,7 +55,7 @@ Theme can be set to one of these [themes](https://xyproto.github.io/splash/docs/
 Highlight line 1 and 3
 
 ````
-```js
+```js/1,3
 let multilineString = `
   this is the first line
   this is the middle line
