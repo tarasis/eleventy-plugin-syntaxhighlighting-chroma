@@ -21,9 +21,9 @@ module.exports = {
         theme: "onedark",
         lineNumbers: false,
         /* lineNumbersStyle: "table",*/ /* "table" or "inline" */
-        alwaysWrapLineHighlights: false,
+        //alwaysWrapLineHighlights: false,
         // eligible to change the default to \n in a new major version.
-        lineSeparator: "<br>",
+        //lineSeparator: "<br>",
         preAttributes: {},
         codeAttributes: {
           theme: "onedark",

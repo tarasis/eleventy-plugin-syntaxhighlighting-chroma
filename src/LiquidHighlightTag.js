@@ -12,13 +12,7 @@ class LiquidHighlightTag {
     let ret = function (highlighter) {
       return {
         parse: function (tagToken, remainTokens) {
-          console.log(">>LIQIUD");
-          console.log(tagToken.args);
-          console.log("<<LIQIUD");
-          let split = tagToken.args.split(" ");
-
-          this.language = split.shift();
-          this.highlightLines = split.join(" ");
+          this.args = tagToken.args;
 
           this.tokens = [];
 
@@ -44,13 +38,9 @@ class LiquidHighlightTag {
             return token.raw || token.getText();
           });
           let tokenStr = tokens.join("").trim();
+          console.log(this.args);
           return Promise.resolve(
-            HighlightPairedShortcode(
-              tokenStr,
-              this.language,
-              this.highlightLines,
-              options
-            )
+            HighlightPairedShortcode(tokenStr, this.args, options)
           );
         },
       };

@@ -41,3 +41,8 @@ Theme can be set to one of these [themes](https://xyproto.github.io/splash/docs/
 
 - `lineNumbers` will add line numbers starting from 1 for each code block.
 - `lineNumbersStyle` if `table` is used, then code block will use a table to make it easier to drag and select the code.
+
+## TO DO
+
+- [✅] Support `.liquid` files
+- [] Add passed in `code` and `pre` atributes into returned html from chroma
