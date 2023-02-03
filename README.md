@@ -46,3 +46,60 @@ Theme can be set to one of these [themes](https://xyproto.github.io/splash/docs/
 
 - [✅] Support `.liquid` files
 - [] Add passed in `code` and `pre` atributes into returned html from chroma
+- [] Add testing
+- [] Add improve regex for line numbers
+- [] Add other arguments that chroma can take (`--html-tab-width`, `--html-highlight-style`, maybe `--html-linkable-lines`)
+
+## Example output
+
+Highlight line 1 and 3
+
+````
+```js
+let multilineString = `
+  this is the first line
+  this is the middle line
+  this is the last line
+`;
+```
+````
+
+![](./images/hightlight-first-and-third-lines.png)
+
+Line numbers shown and highlighting range of lines 3 through 6
+
+````
+```js/3:6/lineNumbers
+let multilineString = `
+  this is the first line
+  this is the second line
+  this is the third line
+  this is the fourth line
+  this is the fifth line
+  this is the sixth line
+  this is the seventh line
+  this is the eighth line
+`;
+```
+````
+
+![](./images/highlight-range-with-line-numbers.png)
+
+Line numbers shown, line numbers set to start at 200, and highlighting range of lines 202 through 204
+
+````
+```js/202:204/lineNumbers/table/lineNumbersStart=200
+let multilineString = `
+  this is the first line
+  this is the second line
+  this is the third line
+  this is the fourth line
+  this is the fifth line
+  this is the sixth line
+  this is the seventh line
+  this is the eighth line
+`;
+```
+````
+
+![](./images/highlight-range-with-line-numbers-arbitary-start-number.png)

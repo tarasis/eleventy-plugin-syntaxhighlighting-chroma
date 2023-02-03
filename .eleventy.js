@@ -3,10 +3,9 @@ const hasTemplateFormat = require("./src/hasTemplateFormat");
 const HighlightPairedShortcode = require("./src/HighlightPairedShortcode");
 const LiquidHighlightTag = require("./src/LiquidHighlightTag");
 // const CharacterWrap = require("./src/CharacterWrap");
-const markdownPrismJs = require("./src/markdownSyntaxHighlightOptions");
+const markdownChroma = require("./src/markdownSyntaxHighlightOptions");
 
 module.exports = {
-  // initArguments: { Prism },
   configFunction: function (eleventyConfig, options = {}) {
     try {
       eleventyConfig.versionCheck(pkg["11ty"].compatibility);
@@ -52,7 +51,7 @@ module.exports = {
 
     if (hasTemplateFormat(options.templateFormats, "md")) {
       // ```js/0,2-3
-      eleventyConfig.addMarkdownHighlighter(markdownPrismJs(options));
+      eleventyConfig.addMarkdownHighlighter(markdownChroma(options));
     }
 
     // if (hasTemplateFormat(options.templateFormats, "11ty.js")) {
