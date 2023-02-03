@@ -103,3 +103,13 @@ let multilineString = `
 ````
 
 ![](./images/highlight-range-with-line-numbers-arbitary-start-number.png)
+
+## Thanks
+
+I am stepping on the shoulders of others.
+
+This plugin is based off of the official [eleventy-plugin-syntaxhighlight](https://github.com/11ty/eleventy-plugin-syntaxhighlight) plugin by Zach Leatherman et al. I modified its code to work with the Chroma highlighter.
+
+I pull in the [chroma-highlight](https://github.com/krymel/chroma-highlight) NPM package by krymel. It downloads the Chroma highlighter binary for the platform you are on, and makes it available through a function to call where you pass in the formatter to use, the language, and any options.
+
+Finally the [Chroma Highlighter](https://github.com/alecthomas/chroma) itself, by Alec Thomas. Tons of languages, themes, and its blazing fast.
