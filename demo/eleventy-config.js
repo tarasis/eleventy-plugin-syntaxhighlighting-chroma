@@ -1,9 +1,13 @@
 const syntaxHighlight = require("../.eleventy.js");
 
-module.exports = function(eleventyConfig) {
+module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight, {
     // alwaysWrapLineHighlights: true
-    preAttributes: { tabindex: 0 }
+    lexerOverrides: {
+      njk: "vue",
+      liquid: "swift",
+    },
+    preAttributes: { tabindex: 0 },
   });
 
   eleventyConfig.setTemplateFormats("njk,liquid,md,css");

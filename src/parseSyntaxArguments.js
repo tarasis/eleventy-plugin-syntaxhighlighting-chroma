@@ -63,10 +63,14 @@ function parseSyntaxArguments(args, context = {}) {
 
   let opts = "";
 
-  opts += `--lexer ${splitArgs[0]} `;
+  // Remove the lang from the arguments
+  let lang = splitArgs.shift();
 
-  // Remove the language which should be the first arg
-  splitArgs.shift();
+  if (context.lexerOverrides[lang]) {
+    lang = context.lexerOverrides[lang];
+  }
+
+  opts += `--lexer ${lang} `;
 
   if (Array.isArray(splitArgs)) {
     splitArgs.forEach((arg) => {
