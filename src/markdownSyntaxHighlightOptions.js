@@ -1,5 +1,8 @@
 const Chroma = require("chroma-highlight");
 const parseSyntaxArguments = require("./parseSyntaxArguments");
+// const getAttributes = require("./getAttributes");
+
+const jsdom = require("jsdom");
 
 module.exports = function (options = {}) {
   return function (str, args) {
@@ -10,16 +13,49 @@ module.exports = function (options = {}) {
 
     let html;
 
-    if (args === "text") {
-      html = str;
-    } else {
-      const parsedArgs = parseSyntaxArguments(args, options);
+    const parsedArgs = parseSyntaxArguments(args, options);
 
-      let opts = `--formatter html --html-only --html-inline-styles ${parsedArgs} `;
+    let opts = `--formatter html --html-only --html-inline-styles ${parsedArgs} `;
 
-      html = Chroma.highlight(str, opts);
-    }
+    html = Chroma.highlight(str, opts);
 
-    return html;
+    const dom = new jsdom.JSDOM(html);
+
+    addAttributesToHtmlElements(
+      dom.window.document.getElementsByTagName("pre"),
+      options.preAttributes
+    );
+
+    addAttributesToHtmlElements(
+      dom.window.document.getElementsByTagName("code"),
+      options.codeAttributes
+    );
+
+    return dom.window.document.body.innerHTML;
   };
 };
+
+function addAttributesToHtmlElements(elements, attributes) {
+  if (typeof attributes === "object") {
+    for (let index = 0; index < elements.length; index++) {
+      Object.entries(attributes).map((entry) => {
+        if (typeof elements[index] === "object") {
+          if (entry[0] === "style") {
+            // check if style already set
+            let style = elements[index].getAttribute("style");
+
+            if (style != null) {
+              elements[index].setAttribute(entry[0], style + entry[1]);
+            } else {
+              elements[index].setAttribute(entry[0], entry[1]);
+            }
+          } else {
+            elements[index].setAttribute(entry[0], entry[1]);
+          }
+        } else {
+          console.error("Can't set attribute on " + typeof elements[index]);
+        }
+      });
+    }
+  }
+}

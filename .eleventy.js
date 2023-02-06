@@ -17,7 +17,7 @@ module.exports = {
 
     options = Object.assign(
       {
-        theme: "onedark",
+        theme: "monokai",
         lineNumbers: false,
         /* lineNumbersStyle: "table",*/ /* "table" or "inline" */
         //alwaysWrapLineHighlights: false,

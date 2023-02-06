@@ -1,7 +1,4 @@
-const HighlightPairedShortcode = require("./HighlightPairedShortcode");
-const Chroma = require("chroma-highlight");
-const parseSyntaxArguments = require("./parseSyntaxArguments");
-const getAttributes = require("./getAttributes");
+const markdownChroma = require("./markdownSyntaxHighlightOptions");
 
 class LiquidHighlightTag {
   constructor(liquidEngine) {
@@ -9,6 +6,8 @@ class LiquidHighlightTag {
   }
 
   getObject(options = {}) {
+    let mc = markdownChroma(options);
+
     let ret = function (highlighter) {
       return {
         parse: function (tagToken, remainTokens) {
@@ -39,9 +38,7 @@ class LiquidHighlightTag {
           });
           let tokenStr = tokens.join("").trim();
 
-          return Promise.resolve(
-            HighlightPairedShortcode(tokenStr, this.args, options)
-          );
+          return Promise.resolve(mc(tokenStr, this.args));
         },
       };
     };

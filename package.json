@@ -9,7 +9,9 @@
   "scripts": {
     "test": "npx ava",
     "demo": "npx @11ty/eleventy --input=demo --output=demo/_site --config=demo/eleventy-config.js",
-    "start": "npx @11ty/eleventy --input=demo --output=demo/_site --config=demo/eleventy-config.js --serve"
+    "start": "npx @11ty/eleventy --input=demo --output=demo/_site --config=demo/eleventy-config.js --serve",
+    "debug": "DEBUG=Eleventy* npx @11ty/eleventy --input=demo --output=demo/_site --config=demo/eleventy-config.js",
+    "bench": "DEBUG=Eleventy:Benchmark* npx @11ty/eleventy --input=demo --output=demo/_site --config=demo/eleventy-config.js"
   },
   "repository": {
     "type": "git",
@@ -40,6 +42,7 @@
   },
   "dependencies": {
     "chroma-highlight": "^2.4.2",
+    "jsdom": "^21.1.0",
     "linkedom": "^0.14.19"
   },
   "ava": {

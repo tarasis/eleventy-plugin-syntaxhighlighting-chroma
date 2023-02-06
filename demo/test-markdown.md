@@ -16,6 +16,14 @@ function myFunction() {
 }
 ```
 
+Text
+```text
+function myFunction() {
+  return true;
+}
+```
+
+
 Langs
 ```ts
 function myFunction() {
