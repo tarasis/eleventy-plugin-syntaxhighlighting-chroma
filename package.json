@@ -15,11 +15,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/11ty/eleventy-plugin-syntaxhighlight.git"
+    "url": "https://github.com/tarasis/eleventy-plugin-syntaxhighlighting-chroma.git"
   },
   "keywords": [
     "eleventy",
-    "eleventy-plugin"
+    "eleventy-plugin",
+    "syntax-highlighting",
+    "chroma"
   ],
   "author": {
     "name": "Robert McGovern",

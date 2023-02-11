@@ -4,6 +4,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight, {
     theme: "monokai",
     lineNumbers: false,
+    highlightStyle: "bg:#943011" /* a background color */,
+    tabWidth: 4,
 
     lexerOverrides: {
       njk: "vue",

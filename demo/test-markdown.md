@@ -61,6 +61,16 @@ let multilineString = `
 `;
 ```
 
+TabWidth 32
+```js/tabWidth=32
+let multilineString = `
+	this line has a tab
+  this line has two spaces
+
+`;
+```
+
+
 Highlight 1 & 3
 ```js/1,3
 let multilineString = `

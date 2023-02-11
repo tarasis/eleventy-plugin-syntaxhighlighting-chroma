@@ -4,7 +4,7 @@
 
 A module for handling syntax highlighting in [Eleventy](https://github.com/11ty/eleventy) using [Chroma](https://github.com/alecthomas/chroma); a syntax highlighter written in Go. There is no browser/client JavaScript required, the highlight transformations are all done at build-time.
 
-I am making using of the [chroma-highlight](https://github.com/krymel/chroma-highlight) NPM package to include `Chroma` support. (It handles downloading the required binary for the platform you are working on).
+I am making using of the [chroma-highlight](https://github.com/krymel/chroma-highlight) NPM package to include EX`Chroma` support. (It handles downloading the required binary for the platform you are working on).
 
 This module/plugin used the 11ty plugin [eleventy-plugin-syntaxhighlight](https://github.com/11ty/eleventy-plugin-syntaxhighlight) as its basis.
 
@@ -36,6 +36,7 @@ For `liquid` and `njk` you can use either `\` or spaces (` `) to separate the ar
 - `lineNumbersStyle` if `table` is used, then code block will use a table to make it easier to drag and select the code. i.e `lineNumberStyle=table`
 - `lineNumbersStart` the number to start the line number count from. i.e `lineNumbersStart=200`
 - number **or** number,number **or** number:number **or** number,rangeStartNumber:rangeEndNumber **or** number,rangeStartNumber-rangeEndNumber to specify a line or lines to highlight. i.e `1`, `1,3`, `3:6`, or `1,3:6`, or `2,4-6`. **NOTE** if you use `lineNumbersStart` then the specified numbers must be relative to that (so `lineNumbersStart=200`, then use `204` to highlight line 204)
+- `tabWidth` the number of spaces to replace tabs with, default is 8. Overrides value in eleventy config if set.
 
 
 ## Supported `options` in eleventy config
@@ -48,6 +49,8 @@ Example of `options` object
 eleventyConfig.addPlugin(syntaxHighlight, {
     theme: "monokai",
     lineNumbers: false,
+    highlightStyle: "bg:#943011",
+    tabWidth: 12,
 
     lexerOverrides: {
       njk: "vue",
@@ -68,14 +71,18 @@ Theme can be set to one of these [themes](https://xyproto.github.io/splash/docs/
 - `lineNumbers` will add line numbers starting from 1 for each code block.
 - `lineNumbersStyle` if `table` is used, then code block will use a table to make it easier to drag and select the code.
 - `lexerOverrides` a key value pair, for instance `liquid: "vue"` will mean that when the code comes across the language `liquid` it will use the `vue` lexer instead. Useful for rendering code blocks that `Chroma` doesn't support out of the box.
+- `tabWidth` the number of spaces to replace tabs with, default used by library is 8.
+- `highlightStyle` allows you to override the theme's highlight color with one you specify. `highlightStyle` takes a string in the form of `bg:#XXXXXX` where `xxxxxx` is a either a 3 or 6 digit color code eg `bg:#943011`
 
 ## TO DO
 
 - [✅] Support `.liquid` files
 - [✅] Add passed in `code` and `pre` atributes into returned html from chroma
+- [✅] Add other arguments that chroma can take (`--html-tab-width`, `--html-highlight-style`)
 - [] Add testing
 - [] Add improve regex for line numbers
-- [] Add other arguments that chroma can take (`--html-tab-width`, `--html-highlight-style`, maybe `--html-linkable-lines`)
+- [] Add `--html-linkable-lines`
+- [] Investigate if possible to use a bridge to call the Go Library directly from JavaScript rather than using the libary binary.
 
 ## Example output
 

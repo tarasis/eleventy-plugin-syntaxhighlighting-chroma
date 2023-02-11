@@ -18,15 +18,11 @@ module.exports = {
     options = Object.assign(
       {
         theme: "monokai",
-        lineNumbers: false,
+        // lineNumbers: false,
+        // highlightStyle: "bg:#293", /* any valid css */
         /* lineNumbersStyle: "table",*/ /* "table" or "inline" */
-        //alwaysWrapLineHighlights: false,
-        // eligible to change the default to \n in a new major version.
-        //lineSeparator: "<br>",
         preAttributes: {},
-        codeAttributes: {
-          theme: "onedark",
-        },
+        codeAttributes: {},
       },
       options
     );
